@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lunch_mate/views/history_view.dart';
 import 'package:lunch_mate/views/setting_view.dart';
 
+import '../widgets/menu_picker.dart';
+
 class MainView extends StatefulWidget {
   const MainView({super.key});
 
@@ -93,6 +95,12 @@ class _MainViewState extends State<MainView> {
                   ),
                 ],
               ),
+            ),
+            MenuPicker(
+              menuList: ["김치찌개", "비빔밥", "돈까스", "라멘", "초밥"],
+              onResult: (selectedMenu) {
+                print("선택된 메뉴: $selectedMenu");
+              },
             ),
             SizedBox(height: 8),
             Container(
