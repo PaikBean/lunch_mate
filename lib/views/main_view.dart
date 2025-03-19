@@ -94,7 +94,7 @@ class _MainViewState extends State<MainView> {
 
   Future<void> _launchNaverMap(String keyword) async {
     final encodedKeyword = Uri.encodeComponent(keyword);
-    final appSchemeUrl = "nmap://search?query=$encodedKeyword&appname=com.example.myapp";
+    final appSchemeUrl = "nmap://search?query=$encodedKeyword&appname=com.app.lunch_mate";
     final webUrl = "https://m.map.naver.com/search2/search.naver?query=$encodedKeyword";
 
     // 네이버 지도 앱이 설치되어 있는지 확인

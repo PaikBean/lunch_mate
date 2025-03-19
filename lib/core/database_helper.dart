@@ -96,5 +96,9 @@ class DatabaseHelper {
       limit: 3, // 🔥 최근 3개만 가져오기
     );
   }
+  Future<List<Map<String, dynamic>>> getAllMenus() async {
+    final db = await database;
+    return await db.query("menus", orderBy: "selected_at DESC");
+  }
 
 }
