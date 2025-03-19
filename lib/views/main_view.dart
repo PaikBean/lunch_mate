@@ -7,6 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:lunch_mate/views/history_view.dart';
 import 'package:lunch_mate/views/setting_view.dart';
 import 'package:lunch_mate/widgets/custom_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 import '../core/database_helper.dart';
 
@@ -56,14 +58,20 @@ class _MainViewState extends State<MainView> {
     });
   }
 
-  void _startRolling() {
+  Future<int> _getRollingDuration() async {
+    final prefs = await SharedPreferences.getInstance();
+    return (prefs.getDouble('rolling_duration') ?? 3.0).toInt(); // ✅ double → int 변환
+  }
+
+  void _startRolling() async {
     if (_isRolling || _menuList.isEmpty) return;
 
     setState(() {
       _isRolling = true;
     });
 
-    int duration = 3000;
+    int rollingDuration = await _getRollingDuration(); // ✅ 설정된 시간 가져오기
+    int duration = rollingDuration * 1000; // 초 단위를 밀리초로 변환
     int interval = 100;
     int count = 0;
 
@@ -79,7 +87,6 @@ class _MainViewState extends State<MainView> {
       }
     });
   }
-
   void _finishRolling() async {
     setState(() {
       _isRolling = false;
