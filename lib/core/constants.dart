@@ -1,0 +1,1 @@
+int ROLLING_DURATION_SEC = 3;

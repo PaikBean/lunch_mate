@@ -101,4 +101,9 @@ class DatabaseHelper {
     return await db.query("selected_menu", orderBy: "selected_at DESC");
   }
 
+  // ✅ 선택된 메뉴 전체 삭제 (검색 기록 초기화)
+  Future<void> clearSelectedMenuHistory() async {
+    final db = await database;
+    await db.delete('selected_menu'); // 모든 기록 삭제
+  }
 }
