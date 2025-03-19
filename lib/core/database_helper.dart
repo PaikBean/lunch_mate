@@ -98,7 +98,7 @@ class DatabaseHelper {
   }
   Future<List<Map<String, dynamic>>> getAllMenus() async {
     final db = await database;
-    return await db.query("menus", orderBy: "selected_at DESC");
+    return await db.query("selected_menu", orderBy: "selected_at DESC");
   }
 
 }
